@@ -14,20 +14,22 @@ public class PrintDanServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=UTF-8");
-		// Servlet 변수를 str1에 저장
-		String str1 = request.getParameter("dan");
-        if (str1 == null) str1 = "1"; 
-        String str2 = request.getParameter("limit");
-        if (str1 == null) str2 = "1";
-        String str3 = request.getParameter("color");
-		// str1을 형변환해서 dan에 저장
-		int dan = Integer.parseInt(str1);
-		int limit = Integer.parseInt(str2);
 
-		response.getWriter().append("==" + dan + "dasdasdsa단==<br>");
+		String str1 = request.getParameter("dan");
+		if (str1 == null) str1 = "1"; 
+		int dan = Integer.parseInt(str1);
+        
+        String str2 = request.getParameter("limit");
+        if (str2 == null) str2 = "1";
+        int limit = Integer.parseInt(str2);
+        
+        String str3 = request.getParameter("color");
+        if (str3 == null) str3 = "black";
+		
+		response.getWriter().append("<div style='color:"+str3+"'>==" + dan + "단==</div>");
 
 		for (int i = 1; i <= limit; i++) {
-			response.getWriter().append(String.format("%d * %d = %d<br>", dan, i, dan * i));
+			response.getWriter().append(String.format("<div style='color:%s'>%d * %d = %d</div>", str3,dan, i, dan * i));
 		}
 	}
 }
