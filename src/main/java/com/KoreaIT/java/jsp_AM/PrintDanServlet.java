@@ -8,26 +8,26 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
-
-
 @WebServlet("/printDan")
 public class PrintDanServlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType("text/html;charset=UTF-8");
-        // Servlet 변수를 str1에 저장
+		// Servlet 변수를 str1에 저장
 		String str1 = request.getParameter("dan");
-		
-        // str1을 형변환해서 dan에 저장
+        if (str1 == null) str1 = "1"; 
+        String str2 = request.getParameter("limit");
+        if (str1 == null) str2 = "1";
+        String str3 = request.getParameter("color");
+		// str1을 형변환해서 dan에 저장
 		int dan = Integer.parseInt(str1);
-		
-		response.getWriter().append("=="+dan+"단==<br>");
-		
-		for(int i = 1; i <= 9; i++) {
-			response.getWriter().append(String.format("%d * %d = %d<br>", dan, i, dan*i));
+		int limit = Integer.parseInt(str2);
+
+		response.getWriter().append("==" + dan + "단==<br>");
+
+		for (int i = 1; i <= limit; i++) {
+			response.getWriter().append(String.format("%d * %d = %d<br>", dan, i, dan * i));
 		}
-		
 	}
 }
