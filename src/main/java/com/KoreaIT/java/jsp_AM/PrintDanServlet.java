@@ -23,7 +23,7 @@ public class PrintDanServlet extends HttpServlet {
         // str1을 형변환해서 dan에 저장
 		int dan = Integer.parseInt(str1);
 		
-		response.getWriter().append("=="+dan+"단==<br>");
+		response.getWriter().append("=="+dan+"ss단==<br>");
 		
 		for(int i = 1; i <= 9; i++) {
 			response.getWriter().append(String.format("%d * %d = %d<br>", dan, i, dan*i));
