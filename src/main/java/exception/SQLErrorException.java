@@ -1,4 +1,4 @@
-package com.KoreaIT.java.jsp_AM;
+package exception;
 
 public class SQLErrorException extends RuntimeException {
     private Exception origin;
