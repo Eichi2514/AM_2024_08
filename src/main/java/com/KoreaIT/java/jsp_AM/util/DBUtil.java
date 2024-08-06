@@ -1,4 +1,4 @@
-package util;
+package com.KoreaIT.java.jsp_AM.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import exception.SQLErrorException;
+import com.KoreaIT.java.jsp_AM.exception.SQLErrorException;
 
 public class DBUtil {
 

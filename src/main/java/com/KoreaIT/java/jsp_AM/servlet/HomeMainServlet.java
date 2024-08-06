@@ -1,4 +1,4 @@
-package servlet;
+package com.KoreaIT.java.jsp_AM.servlet;
 
 import java.io.IOException;
 
