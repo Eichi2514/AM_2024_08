@@ -12,9 +12,9 @@ String color = request.getParameter("color");
 <title>구구단 출력</title>
 </head>
 <body>
-	<h1>
+	<div style="color:<%=color%>">
 		==<%=dan%>단==
-	</h1>
+	</div>
 	<%
 	for (int i = 1; i <= limite; i++) {
 	%>
