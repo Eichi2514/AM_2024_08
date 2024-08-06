@@ -20,7 +20,6 @@ public class ArticleListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 
-		// DB 연결
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -47,7 +46,9 @@ public class ArticleListServlet extends HttpServlet {
 
 			List<Map<String, Object>> articleRows = dbUtil.selectRows(conn, sql);
 
-			response.getWriter().append(articleRows.toString());
+			
+			request.setAttribute("articleRows", articleRows);
+			request.getRequestDispatcher("/jsp/article/list.jsp").forward(request, response);
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);

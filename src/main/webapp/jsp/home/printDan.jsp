@@ -18,11 +18,7 @@ String color = request.getParameter("color");
 	<%
 	for (int i = 1; i <= limite; i++) {
 	%>
-	<div style="color:<%=color%>"><%=dan%>
-		*
-		<%=i%>
-		=
-		<%=dan * i%></div>
+	<div style="color:<%=color%>"><%=dan%> * <%=i%> = <%=dan * i%></div>
 	<%
 	}
 	%>
