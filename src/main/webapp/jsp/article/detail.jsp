@@ -5,83 +5,36 @@
 	pageEncoding="UTF-8"%>
 
 <%
-List<Map<String, Object>> articleRows = (List<Map<String, Object>>) request.getAttribute("articleRows");
-
-int cPage = (int) request.getAttribute("page");
-int totalPage = (int) request.getAttribute("totalPage");
-int totalCnt = (int) request.getAttribute("totalCnt");
+Map<String, Object> articleRow = (Map<String, Object>) request.getAttribute("articleRow");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시물 목록</title>
+<title>게시물 상세페이지</title>
 </head>
 <body>
 
-	<h2>게시물 목록</h2>
+	<a href="../home/main">메인</a>
 
-	<a href="../home/main">메인 페이지로 </a>
+	<h2>게시물 상세페이지</h2>
+
 	<div>
-		총 게시글 수 :
-		<%=totalCnt%>
-		개
+		번호 :
+		<%=articleRow.get("id")%></div>
+	<div>
+		날짜 :
+		<%=articleRow.get("regDate")%></div>
+	<div>
+		제목 :
+		<%=articleRow.get("title")%></div>
+	<div>
+		내용 :
+		<%=articleRow.get("body")%></div>
+
+	<div>
+		<a style="color: green" href="list">리스트</a>
 	</div>
-
-	<table style="border-collapse: collapse; border-color: green;"
-		border="1px">
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>날짜</th>
-				<th>제목</th>
-				<th>내용</th>
-				<th>삭제</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-			for (Map<String, Object> articleRow : articleRows) {
-			%>
-			<tr style="text-align: center;">
-				<td><%=articleRow.get("id")%></td>
-				<td><%=articleRow.get("regDate")%></td>
-				<td><%=articleRow.get("title")%></td>
-				<td><%=articleRow.get("body")%></td>
-				<td><a href="doDelete?id=<%=articleRow.get("id")%>">del</a></td>
-			</tr>
-			<%
-			}
-			%>
-		</tbody>
-	</table>
-
-	<style type="text/css">
-.page {
-	font-size: 1.4rem;
-}
-
-.page>a {
-	color: black;
-	text-decoration: none;
-}
-
-.page>a.cPage {
-	color: red;
-	text-decoration: underline;
-}
-</style>
-
-	<div class="page">
-		<%
-		for (int i = 1; i <= totalPage; i++) {
-		%>
-		<a class="<%=cPage == i ? "cPage" : ""%>" href="list?page=<%=i%>"><%=i%></a>
-		<%
-		}
-		%>
-	</div>
-
 
 </body>
 </html>

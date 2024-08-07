@@ -11,8 +11,40 @@
 <body>
 	<h1>MAIN</h1>
 	<ul>
-		<li><a href="../article/write">글 작성</a></li>
-		<li><a href="../article/list">리스트로 이동</a></li>
+		<li><button>
+				<a href="../member/join">회원가입</a>
+			</button></li>
+			<br />
+		<li><button>
+				<a href="../member/login">로그인</a>
+			</button></li>
+		<li class="log_H"><button>
+				<a href="../member/logout">로그아웃</a>
+			</button></li>
+			<br />
+		<li><button>
+				<a href="../article/list">리스트</a>
+			</button></li>
+			<br />
 	</ul>
+	
+<style type="text/css">
+li{
+ list-style:none;
+}
+a {
+	color: black;
+	text-decoration: none;
+}
+
+li.log_H {
+	display: none;
+}
+
+li.log_B {
+	display: block;
+}
+</style>
+
 </body>
 </html>

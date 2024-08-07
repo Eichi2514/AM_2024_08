@@ -8,15 +8,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시물 작성</title>
+<title>글쓰기</title>
 </head>
 <body>
 
-	<a href="../home/main">메인 페이지로 </a>
+	<button><a href="../home/main">메인</a></button>
 
-	<h2>게시물 작성</h2>
-	
-	<div>제목 : </div><input type="text" />
-	<div>내용 : </div><input type="text" />
+	<h2>글쓰기</h2>
+
+	<form method="POST" action="doWrite">
+		<div>
+			제목 : <input type="text" placeholder="제목 입력" name="title" />
+		</div>
+		<div>
+			내용 :
+			<textarea type="text" placeholder="내용 입력" name="body"></textarea>
+		</div>
+		<br />
+		<button type="submit">저장</button>
+		<button type="button"><a href="../home/main">취소</a></button>
+	</form>
+	<style type="text/css">
+a {
+	color: black;
+	text-decoration: none;
+}
+</style>
 </body>
 </html>
