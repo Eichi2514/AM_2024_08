@@ -13,7 +13,10 @@ public class HomeMainServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		boolean isLogined = false;
+		
+		request.setAttribute("isLogined", isLogined);
 		request.getRequestDispatcher("/jsp/home/main.jsp").forward(request, response);
 
 	}

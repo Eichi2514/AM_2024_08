@@ -3,12 +3,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-String loginId = "";
-%>
-<%
-String loginPw = "";
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,27 +15,46 @@ String loginPw = "";
 
 	<h2>로그인</h2>
 
-	<form method="POST" action="doLogin">
+	<script type="text/javascript">
+		function LoginForm__submit(form) {
+
+			let loginId = form.loginId.value.trim();
+			let loginPw = form.loginPw.value.trim();
+
+			if (loginId.length == 0) {
+				alert('아이디를 입력해주세요');
+				return;
+			}
+			if (loginPw.length == 0) {
+				alert('비밀번호를 입력해주세요');
+				return;
+			}
+			
+			form.submit();
+
+		}
+	</script>
+
+
+	<form method="POST" action="doLogin"
+		onsubmit="LoginForm__submit(this); return false;">
 		<div>
-			<div>ID</div>
-			<div>
-				<input type="text" placeholder="ID 입력" name="loginId" />
-			</div>
+			아이디 <br /> <input autocomplete="off" type="text"
+				placeholder="아이디 입력" name="loginId" />
 		</div>
 		<div>
-			<div>PassWord</div>
-			<div>
-				<input type="text" placeholder="PassWord 입력" name="loginPw" />
-			</div>
+			비밀번호 <br /> <input autocomplete="off" type="text"
+				placeholder="비밀번호 입력" name="loginPw" />
 		</div>
+		
 		<br />
-		<button type="submit">로그인</button>
+		<button type="submit">확인</button>
 		<button type="button">
 			<a href="../home/main">취소</a>
 		</button>
 	</form>
 	
-	<style type="text/css">
+		<style type="text/css">
 a {
 	color: black;
 	text-decoration: none;

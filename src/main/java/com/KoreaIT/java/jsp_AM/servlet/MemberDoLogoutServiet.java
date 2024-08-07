@@ -7,14 +7,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/member/doLogout")
-public class MemberDoLogoutServiet2 extends HttpServlet {
+public class MemberDoLogoutServiet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/jsp/member/login.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+//		session.removeAttribute("loginedMemberId", session);
 
 	}
 
