@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/article/modify")
 public class ArticleModifyServlet extends HttpServlet {
@@ -49,13 +50,28 @@ public class ArticleModifyServlet extends HttpServlet {
 			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
 
 			if (articleRow.get("id") == null) {
+				response.getWriter().append(String.format(
+						"<script>alert('%d번 글은 존재하지 않습니다'); location.replace('http://localhost:8080/JSP_AM_2024_08/home/main');;</script>",
+						id));
+			}
+			int loginedMemberId = -1;
+			
+			HttpSession session = request.getSession();
+			
+			if (session.getAttribute("loginedMemberId") != null) {
+				loginedMemberId = (int) session.getAttribute("loginedMemberId");
+
+			}
+			if (loginedMemberId != (int) articleRow.get("memberId")) {
 				response.getWriter()
-				.append(String.format("<script>alert('%d번 글은 존재하지 않습니다'); location.replace('http://localhost:8080/JSP_AM_2024_08/home/main');;</script>", id));
-			} else {
+						.append(String.format("<script>alert('수정 권한이 없습니다'); location.replace('list');;</script>"));
+			}
 
-			request.setAttribute("articleRow", articleRow);
+			else {
 
-			request.getRequestDispatcher("/jsp/article/modify.jsp").forward(request, response);
+				request.setAttribute("articleRow", articleRow);
+
+				request.getRequestDispatcher("/jsp/article/modify.jsp").forward(request, response);
 			}
 
 		} catch (SQLException e) {

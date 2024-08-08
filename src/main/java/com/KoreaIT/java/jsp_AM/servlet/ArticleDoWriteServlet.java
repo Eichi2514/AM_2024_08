@@ -57,7 +57,7 @@ public class ArticleDoWriteServlet extends HttpServlet {
 			int id = DBUtil.insert(conn, sql);
 
 			response.getWriter()
-					.append(String.format("<script>alert('%d번 글이 등록 됨'); location.replace('http://localhost:8080/JSP_AM_2024_08/home/main');;</script>", id));
+					.append(String.format("<script>alert('%d번 글이 등록 되었습니다'); location.replace('list');;</script>", id));
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);
