@@ -50,18 +50,20 @@ public class MemberDoLoginServiet extends HttpServlet {
 			sql.append("WHERE loginId = ? AND loginPw = ?;", loginId, loginPw);
 
 			Map<String, Object> memberRow = DBUtil.selectRow(conn, sql);
-
+			
 			if (memberRow.isEmpty()) {
 				response.getWriter().append(String
-						.format("<script>alert('회원정보가 잘못됐습니다'); location.replace('../member/login');</script>", loginId));
+						.format("<script>alert('회원정보가 잘못됐습니다'); location.replace('../member/login');</script>"));
 				return;
 			}
 			
 			HttpSession session = request.getSession();
-			session.setAttribute("loginedMemberId", session);
+			session.setAttribute("loginedMemberId", memberRow.get("id"));
+			session.setAttribute("loginedMemberLoginId", memberRow.get("loginId"));
+			session.setAttribute("loginedMember", memberRow);
 
 			response.getWriter().append(
-					String.format("<script>alert('%d님 환영합니다.'); location.replace('../home/main');</script>", memberRow.get("name")));
+					String.format("<script>alert('%s님 환영합니다.'); location.replace('../home/main');</script>", memberRow.get("name")));
 
 		} catch (SQLException e) {
 			System.out.println("에러 1 : " + e);

@@ -1,9 +1,12 @@
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 
 <%
 boolean isLogined = (boolean) request.getAttribute("isLogined");
+int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+Map<String, Object> loginedMember = (Map<String, Object>) request.getAttribute("loginedMember");
 %>
 
 <!DOCTYPE html>
@@ -14,6 +17,14 @@ boolean isLogined = (boolean) request.getAttribute("isLogined");
 </head>
 <body>
 	<h1>MAIN</h1>
+	<%
+	if (loginedMemberId > 0) {
+	%>
+	<div>&emsp;<%=loginedMember.get("name")%>님
+	</div>
+	<%
+	}
+	%>
 	<ul>
 		<li><button>
 				<a href="../member/join">회원가입</a>
@@ -53,9 +64,6 @@ a {
 	text-decoration: none;
 }
 
-li.log_H {
-	display: none;
-}
 </style>
 
 </body>
